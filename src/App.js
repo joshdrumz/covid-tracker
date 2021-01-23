@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
+import { createMuiTheme, ThemeProvider, CssBaseline, Container } from '@material-ui/core';
+import { fetchAll } from './api';
+
+import Cards from './components/Cards';
+import NavBar from './components/NavBar';
 
 function App() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      setData(await fetchAll());
+    };
+
+    getData();
+  }, []);
+
+  // console.log(data);
+
+  const theme = createMuiTheme({
+    palette: {
+      type: 'dark'
+    }
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Container>
+        <CssBaseline />
+        <NavBar />
+        <Cards data={data} />
+        <Cards data={data} />
+        <Cards data={data} />
+        <Cards data={data} />
+        <Cards data={data} />
+      </Container>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
