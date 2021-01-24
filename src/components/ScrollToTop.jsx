@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { AppBar, Toolbar, Typography, Zoom, Fab } from '@material-ui/core';
+import { Zoom, Fab, Toolbar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
@@ -40,21 +39,12 @@ const ScrollTop = props => {
   );
 };
 
-const NavBar = props => {
-  const [themeMode, setThemeMode] = useState(true);
-
+const ScrollToTop = props => {
   return (
     <>
-      <AppBar position="static" color="transparent">
-        <Toolbar>
-          <Typography variant="h6">
-            Covid-19 Tracker
-          </Typography>
-        </Toolbar>
-      </AppBar>
       <Toolbar id="back-to-top-anchor" />
       <ScrollTop {...props}>
-        <Fab color="secondary" size="small" aria-label="scroll back to top">
+        <Fab color="primary" size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
@@ -62,4 +52,4 @@ const NavBar = props => {
   );
 };
 
-export default NavBar;
+export default ScrollToTop;
