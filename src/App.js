@@ -10,8 +10,8 @@ import {
   Typography
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import WbSunny from '@material-ui/icons/WbSunny';
-import NightsStay from '@material-ui/icons/NightsStay';
+import { WbSunny, NightsStay } from '@material-ui/icons';
+
 import { fetchAll } from './api';
 
 import Cards from './components/Cards';
@@ -55,6 +55,9 @@ function App() {
             <Toolbar>
               <Typography variant="h6" className={classes.title}>
                 Covid-19 Tracker
+              </Typography>
+              <Typography variant="subtitle2" className={classes.title}>
+                Last updated on: {new Date(data.updated).toLocaleDateString()} {new Date(data.updated).toLocaleTimeString()}
               </Typography>
               <WbSunny />
               <Switch checked={themeMode} onChange={() => setThemeMode(!themeMode)} />

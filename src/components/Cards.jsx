@@ -1,30 +1,47 @@
 import { Grid, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import CardTemplate from './Card';
 
-const Cards = ({ data: { updated, cases, todayCases, deaths, todayDeaths, recovered, todayRecovered } }) => { 
+const useStyles = makeStyles(() => ({
+  cases: {
+    color: 'red',
+  },
+  recovered: {
+    color: 'green'
+  },
+  deaths: {
+    color: '#C4C62B'
+  }
+}));
+
+const Cards = ({ data: { cases, todayCases, deaths, todayDeaths, recovered, todayRecovered } }) => { 
+  const classes = useStyles();
+
   if (!cases) {
     return 'Loading...';
   }
 
   return (
     <div>
-      <Typography gutterBottom variant="h4" component="h2">Global</Typography>
-      <Grid container spacing={3} justify="center">
+      {/* <Typography gutterBottom variant="h4" component="h2">Global</Typography> */}
+      <Grid container justify="center">
         <CardTemplate
-          cardTitle="Cases"
+          cardTitle="Total Confirmed"
+          fontColor={classes.cases}
           value={cases}
-          lastUpdate={updated}
-          cardSubtitle="Number of active cases from COVID-19."
+          todayValue={todayCases}
         />
         <CardTemplate
           cardTitle="Recovered"
+          fontColor={classes.recovered}
           value={recovered}
-          cardSubtitle="Number of recoveries from COVID-19."
+          todayValue={todayDeaths}
         />
         <CardTemplate
           cardTitle="Deaths"
+          fontColor={classes.deaths}
           value={deaths}
-          cardSubtitle="Number of deaths caused by COVID-19."
+          todayValue={todayRecovered}
         />
       </Grid>
     </div>

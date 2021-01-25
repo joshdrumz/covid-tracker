@@ -8,7 +8,15 @@ export const fetchAll = async () => {
       data: { updated, cases, todayCases, deaths, todayDeaths, recovered, todayRecovered }
     } = await axios.get(`${url}/all`);
 
-    return { updated, cases, todayCases, deaths, todayDeaths, recovered, todayRecovered };
+    return {
+      updated,
+      cases,
+      todayCases,
+      deaths,
+      todayDeaths,
+      recovered,
+      todayRecovered
+    };
   } catch (error) {
     console.error(error);
   }
