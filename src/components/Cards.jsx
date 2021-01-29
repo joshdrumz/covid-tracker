@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import CardTemplate from './Card';
 
@@ -16,15 +16,14 @@ const useStyles = makeStyles(() => ({
 
 const Cards = ({ data: { cases, todayCases, deaths, todayDeaths, recovered, todayRecovered } }) => { 
   const classes = useStyles();
-
+  
   if (!cases) {
     return 'Loading...';
   }
 
   return (
-    <div>
-      {/* <Typography gutterBottom variant="h4" component="h2">Global</Typography> */}
-      <Grid container justify="center">
+    <>
+      <Grid container alignItems="center" justify="center" spacing={4}>
         <CardTemplate
           cardTitle="Total Confirmed"
           fontColor={classes.cases}
@@ -35,16 +34,16 @@ const Cards = ({ data: { cases, todayCases, deaths, todayDeaths, recovered, toda
           cardTitle="Recovered"
           fontColor={classes.recovered}
           value={recovered}
-          todayValue={todayDeaths}
+          todayValue={todayRecovered}
         />
         <CardTemplate
           cardTitle="Deaths"
           fontColor={classes.deaths}
           value={deaths}
-          todayValue={todayRecovered}
+          todayValue={todayDeaths}
         />
       </Grid>
-    </div>
+    </>
   );
 };
 

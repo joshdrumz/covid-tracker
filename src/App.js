@@ -3,27 +3,32 @@ import {
   createMuiTheme,
   ThemeProvider,
   CssBaseline,
-  Container,
-  AppBar,
-  Toolbar,
-  Switch,
-  Typography
+  Container
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { WbSunny, NightsStay } from '@material-ui/icons';
+import covidLogo from './images/covid-logo.png';
 
 import { fetchAll } from './api';
 
 import Cards from './components/Cards';
 import ScrollToTop from './components/ScrollToTop';
 
-const useStyles = makeStyles(() => ({
-  // nav styles
-  root: {
-    flexGrow: 1
+const useStyles = makeStyles(theme => ({
+  center: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    '@media (max-width: 770px)': {
+      margin: '0 10%'
+    }
   },
-  title: {
-    flexGrow: 1
+  img: {
+    width: '370px',
+    marginTop: '50px',
+    '@media (max-width: 770px)': {
+      width: '100%'
+    }
   }
 }));
 
@@ -49,24 +54,15 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container>
-        <div className={classes.root}>
-          <AppBar position="static" color="transparent" elevation={0}>
-            <Toolbar>
-              <Typography variant="h6" className={classes.title}>
-                Covid-19 Tracker
-              </Typography>
-              <Typography variant="subtitle2" className={classes.title}>
-                Last updated on: {new Date(data.updated).toLocaleDateString()} {new Date(data.updated).toLocaleTimeString()}
-              </Typography>
-              <WbSunny />
-              <Switch checked={themeMode} onChange={() => setThemeMode(!themeMode)} />
-              <NightsStay />
-            </Toolbar>
-          </AppBar>
-          <ScrollToTop />
-        </div>
-        <CssBaseline />
+      <CssBaseline />
+      <div className={classes.center}>
+        <img src={covidLogo} alt="" className={classes.img} />
+      </div>
+      <Container maxWidth="lg">
+        {/* <WbSunny />
+          <Switch checked={themeMode} onChange={() => setThemeMode(!themeMode)} />
+          <NightsStay /> */}
+        <ScrollToTop />
         <Cards data={data} />
       </Container>
     </ThemeProvider>
