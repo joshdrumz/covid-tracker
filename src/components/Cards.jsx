@@ -3,6 +3,9 @@ import { makeStyles } from '@material-ui/styles';
 import CardTemplate from './Card';
 
 const useStyles = makeStyles(() => ({
+  container: {
+    margin: '20px',
+  },
   cases: {
     color: 'red',
   },
@@ -23,7 +26,7 @@ const Cards = ({ data: { cases, todayCases, deaths, todayDeaths, recovered, toda
 
   return (
     <>
-      <Grid container alignItems="center" justify="center" spacing={4}>
+      <Grid container alignItems="center" justify="center" spacing={4} className={classes.container}>
         <CardTemplate
           cardTitle="Total Confirmed"
           fontColor={classes.cases}

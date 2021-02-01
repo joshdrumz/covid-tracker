@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
   darkMode: {
     position: 'fixed',
     top: theme.spacing(2),
+    left: theme.spacing(2)
   },
   pushUp: {
     marginBottom: '16px'
@@ -65,19 +66,17 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <div className={classes.darkMode}>
+        <WbSunny />
+        <Switch className={classes.pushUp} checked={themeMode} onChange={() => setThemeMode(!themeMode)} />
+        <NightsStay />
+      </div>
       <div className={classes.center}>
         <img src={covidLogo} alt="covid logo" className={classes.img} />
-      </div>
-      <Container maxWidth="lg">
         <ScrollToTop />
         <Cards data={data} />
         <CountryPicker />
-        <div className={classes.darkMode}>
-          <WbSunny />
-          <Switch className={classes.pushUp} checked={themeMode} onChange={() => setThemeMode(!themeMode)} />
-          <NightsStay />
-        </div>
-      </Container>
+      </div>
     </ThemeProvider>
   );
 };
