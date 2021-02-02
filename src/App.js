@@ -3,7 +3,6 @@ import {
   createMuiTheme,
   ThemeProvider,
   CssBaseline,
-  Container,
   Switch
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -45,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const [data, setData] = useState([]);
+  const [country, setCountry] = useState('');
   const [themeMode, setThemeMode] = useState(true);
 
   const classes = useStyles();
@@ -56,6 +56,15 @@ function App() {
 
     getData();
   }, []);
+
+  const handleCountryChange = country => {
+    const getCountryData = async () => {
+      setCountry(country);
+      setData(await fetchAll(country));
+    };
+
+    getCountryData();
+  };
 
   const theme = createMuiTheme({
     palette: {
@@ -75,7 +84,7 @@ function App() {
         <img src={covidLogo} alt="covid logo" className={classes.img} />
         <ScrollToTop />
         <Cards data={data} />
-        <CountryPicker />
+        <CountryPicker handleCountryChange={handleCountryChange} />
       </div>
     </ThemeProvider>
   );

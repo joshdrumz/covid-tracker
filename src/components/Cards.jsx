@@ -4,7 +4,7 @@ import CardTemplate from './Card';
 
 const useStyles = makeStyles(() => ({
   container: {
-    margin: '20px',
+    // margin: '20px',
   },
   cases: {
     color: 'red',
