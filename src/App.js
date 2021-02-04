@@ -83,7 +83,7 @@ function App() {
       <div className={classes.center}>
         <img src={covidLogo} alt="covid logo" className={classes.img} />
         <ScrollToTop />
-        <Cards data={data} />
+        <Cards data={data} country={country} />
         <CountryPicker handleCountryChange={handleCountryChange} />
       </div>
     </ThemeProvider>

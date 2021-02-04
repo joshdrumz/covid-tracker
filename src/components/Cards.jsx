@@ -1,11 +1,8 @@
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import CardTemplate from './Card';
 
 const useStyles = makeStyles(() => ({
-  container: {
-    // margin: '20px',
-  },
   cases: {
     color: 'red',
   },
@@ -14,10 +11,13 @@ const useStyles = makeStyles(() => ({
   },
   deaths: {
     color: '#C4C62B'
+  },
+  title: {
+    marginBottom: '40px'
   }
 }));
 
-const Cards = ({ data: { cases, todayCases, deaths, todayDeaths, recovered, todayRecovered } }) => { 
+const Cards = ({ data: { cases, todayCases, deaths, todayDeaths, recovered, todayRecovered }, country }) => { 
   const classes = useStyles();
   
   if (!cases) {
@@ -26,7 +26,8 @@ const Cards = ({ data: { cases, todayCases, deaths, todayDeaths, recovered, toda
 
   return (
     <>
-      <Grid container alignItems="center" justify="center" spacing={4} className={classes.container}>
+      <Typography variant="h2" className={classes.title}>{country || 'Global'}</Typography>
+      <Grid container alignItems="center" justify="center" spacing={4}>
         <CardTemplate
           cardTitle="Total Confirmed"
           fontColor={classes.cases}
