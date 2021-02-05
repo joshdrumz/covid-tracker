@@ -13,11 +13,19 @@ const useStyles = makeStyles(() => ({
     color: '#C4C62B'
   },
   title: {
-    marginBottom: '40px'
+    marginBottom: '40px',
+    textAlign: 'center',
+    '@media (max-width: 770px)': {
+      fontSize: '30px'
+    }
+  },
+  image: {
+    marginBottom: '40px',
+    width: '250px'
   }
 }));
 
-const Cards = ({ data: { cases, todayCases, deaths, todayDeaths, recovered, todayRecovered }, country }) => { 
+const Cards = ({ data: { cases, todayCases, deaths, todayDeaths, recovered, todayRecovered }, country, flag }) => { 
   const classes = useStyles();
   
   if (!cases) {
@@ -27,6 +35,7 @@ const Cards = ({ data: { cases, todayCases, deaths, todayDeaths, recovered, toda
   return (
     <>
       <Typography variant="h2" className={classes.title}>{country || 'Global'}</Typography>
+      {country ? <img src={flag} alt={`${country}'s flag`} className={classes.image} /> : null}
       <Grid container alignItems="center" justify="center" spacing={4}>
         <CardTemplate
           cardTitle="Total Confirmed"

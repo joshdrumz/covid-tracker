@@ -39,3 +39,13 @@ export const fetchCountries = async () => {
     console.error(error);
   }
 };
+
+export const fetchCountryFlag = async country => {
+  try {
+    const { data: { countryInfo } } = await axios.get(`${url}/countries/${country}`);
+
+    return countryInfo.flag;
+  } catch (error) {
+    console.error(error);
+  }
+};

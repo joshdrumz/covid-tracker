@@ -10,6 +10,7 @@ import { WbSunny, NightsStay } from '@material-ui/icons';
 import covidLogo from './images/covid-logo.png';
 
 import { fetchAll } from './api';
+import { fetchCountryFlag } from './api';
 
 import Cards from './components/Cards';
 import CountryPicker from './components/CountryPicker';
@@ -17,6 +18,7 @@ import ScrollToTop from './components/ScrollToTop';
 
 const useStyles = makeStyles((theme) => ({
   center: {
+    overflowX: 'hidden',
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
@@ -45,9 +47,16 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const [data, setData] = useState([]);
   const [country, setCountry] = useState('');
+  const [flag, setFlag] = useState('');
   const [themeMode, setThemeMode] = useState(true);
 
   const classes = useStyles();
+
+  const theme = createMuiTheme({
+    palette: {
+      type: themeMode ? 'dark' : 'light'
+    }
+  });
 
   useEffect(() => {
     const getData = async () => {
@@ -66,11 +75,15 @@ function App() {
     getCountryData();
   };
 
-  const theme = createMuiTheme({
-    palette: {
-      type: themeMode ? 'dark' : 'light'
+  useEffect(() => {
+    const getCountryFlag = async () => {
+      setFlag(await fetchCountryFlag(country));
     }
-  });
+
+    if (country) {
+      getCountryFlag();
+    }
+  }, [country]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -83,7 +96,7 @@ function App() {
       <div className={classes.center}>
         <img src={covidLogo} alt="covid logo" className={classes.img} />
         <ScrollToTop />
-        <Cards data={data} country={country} />
+        <Cards data={data} country={country} flag={flag} />
         <CountryPicker handleCountryChange={handleCountryChange} />
       </div>
     </ThemeProvider>

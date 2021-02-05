@@ -3,9 +3,6 @@ import { makeStyles } from '@material-ui/styles';
 import CountUp from 'react-countup';
 
 const useStyles = makeStyles({
-  card: {
-    margin: '0 2%'
-  },
   subText: {
     marginTop: '0.8rem',
     fontStyle: 'italic'

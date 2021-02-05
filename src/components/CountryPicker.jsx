@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
     width: '30%',
     marginTop: '50px',
     '@media (max-width: 770px)': {
-      width: '80%'
+      width: '90%'
     }
   }
 }));
@@ -29,7 +29,7 @@ const CountryPicker = ({ handleCountryChange }) => {
   
   return (
     <FormControl className={classes.formControl}>
-      <NativeSelect defaultValue="USA" onChange={e => handleCountryChange(e.target.value)}>
+      <NativeSelect defaultValue="" onChange={e => handleCountryChange(e.target.value)}>
         <option value="">Global</option>
         {countries.map((country, i) => <option key={i} value={country}>{country}</option>)}
       </NativeSelect>
