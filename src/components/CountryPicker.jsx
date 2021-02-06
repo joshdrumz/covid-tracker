@@ -7,7 +7,7 @@ import { fetchCountries } from '../api';
 const useStyles = makeStyles(() => ({
   formControl: {
     width: '30%',
-    marginTop: '50px',
+    margin: '3em 0 3em 0',
     '@media (max-width: 770px)': {
       width: '90%'
     }

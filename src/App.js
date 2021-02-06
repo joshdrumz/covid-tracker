@@ -14,6 +14,7 @@ import { fetchCountryFlag } from './api';
 
 import Cards from './components/Cards';
 import CountryPicker from './components/CountryPicker';
+import Chart from './components/Chart';
 import ScrollToTop from './components/ScrollToTop';
 
 const useStyles = makeStyles((theme) => ({
@@ -38,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     top: theme.spacing(2),
     left: theme.spacing(2)
+  },
+  updated: {
+    marginTop: '50px'
   },
   pushUp: {
     marginBottom: '16px'
@@ -98,6 +102,8 @@ function App() {
         <ScrollToTop />
         <Cards data={data} country={country} flag={flag} />
         <CountryPicker handleCountryChange={handleCountryChange} />
+        <Chart data={data} />
+        <p className={classes.updated}>Last updated: {new Date(data.updated).toLocaleString()}</p>
       </div>
     </ThemeProvider>
   );
