@@ -3,19 +3,17 @@ import {
   createMuiTheme,
   ThemeProvider,
   CssBaseline,
-  Switch
+  Switch,
+  Link
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { WbSunny, NightsStay } from '@material-ui/icons';
 import covidLogo from './images/covid-logo.png';
 
+import { Cards, CountryPicker, Chart, ScrollToTop } from './components';
+
 import { fetchAll } from './api';
 import { fetchCountryFlag } from './api';
-
-import Cards from './components/Cards';
-import CountryPicker from './components/CountryPicker';
-import Chart from './components/Chart';
-import ScrollToTop from './components/ScrollToTop';
 
 const useStyles = makeStyles((theme) => ({
   center: {
@@ -104,6 +102,26 @@ function App() {
         <CountryPicker handleCountryChange={handleCountryChange} />
         <Chart data={data} country={country} />
         <p className={classes.updated}>Last updated: {new Date(data.updated).toLocaleString()}</p>
+        <p>
+          Created by {' '}
+          <Link
+            href="https://www.linkedin.com/in/josh-arrants/"
+            target="_blank"
+            style={{ color: 'green' }}
+            rel="noopener noreferrer nofollow"
+          >
+            Josh Arrants
+          </Link>. {' '}
+          Covid data from: {' '}
+          <Link
+            href="https://disease.sh/"
+            target="_blank"
+            style={{ color: 'green' }}
+            rel="noopener noreferrer nofollow"
+          >
+            disease.sh
+          </Link>
+        </p>
       </div>
     </ThemeProvider>
   );
