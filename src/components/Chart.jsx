@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
+const Chart = ({ data: { cases, recovered, deaths }, country }) => {
   const [dailyData, setDailyData] = useState({});
 
   const classes = useStyles();
@@ -29,6 +29,27 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
 
     getDailyData();
   }, []);
+
+  const barChart = (
+    cases ? (
+      <Bar
+        data={{
+          labels: ['Confirmed', 'Recovered', 'Deaths'],
+          datasets: [
+            {
+              label: 'People',
+              backgroundColor: ['rgba(255, 0, 0, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(251, 255, 0, 0.5)'],
+              data: [cases, recovered, deaths]
+            }
+          ]
+        }}
+        options={{
+          legend: { display: false },
+          title: { display: true, text: `Current state in ${country}` }
+        }}
+      />
+    ) : null
+  );
 
   const lineChart = (
     dailyData[0] ? (
@@ -60,7 +81,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
 
   return (
     <div className={classes.container}>
-      {lineChart}
+      {country ? barChart : lineChart}
     </div>
   );
 };

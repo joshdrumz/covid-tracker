@@ -102,7 +102,7 @@ function App() {
         <ScrollToTop />
         <Cards data={data} country={country} flag={flag} />
         <CountryPicker handleCountryChange={handleCountryChange} />
-        <Chart data={data} />
+        <Chart data={data} country={country} />
         <p className={classes.updated}>Last updated: {new Date(data.updated).toLocaleString()}</p>
       </div>
     </ThemeProvider>
